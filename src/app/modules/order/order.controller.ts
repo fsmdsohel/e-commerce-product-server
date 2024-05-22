@@ -1,16 +1,29 @@
 import { Request, Response } from "express";
 import { OrderServices } from "./order.service";
+import { TOrderSchema } from "./order.validation";
 
 const createNewOrder = async (req: Request, res: Response) => {
   try {
     const orderData = req.body;
-    const result = await OrderServices.createNewOrderIntoDB(orderData);
+
+    const { value, error } = TOrderSchema.validate(orderData);
+
+    if (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Something went wrong",
+        error: error,
+      });
+    }
+
+    const result = await OrderServices.createNewOrderIntoDB(value);
 
     res.status(201).json({
       success: true,
       message: "Order created successfully",
       data: result,
     });
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   } catch (error: any) {
     res.status(500).json({
       success: false,
@@ -41,6 +54,7 @@ const getAllOrders = async (req: Request, res: Response) => {
         data: result,
       });
     }
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   } catch (error: any) {
     res.status(500).json({
       success: false,

@@ -29,6 +29,7 @@ const createNewOrderIntoDB = async (orderData: TOrder) => {
     const result = await newOrder.save();
 
     return result;
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   } catch (error: any) {
     throw new Error(error);
   }
@@ -38,6 +39,7 @@ const getAllOrdersFromDB = async () => {
   try {
     const result = await Order.find();
     return result;
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   } catch (error: any) {
     throw new Error(error);
   }
@@ -47,6 +49,7 @@ const getOrderByEmailFromDB = async (email: string) => {
   try {
     const result = await Order.find({ email: email });
     return result;
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   } catch (error: any) {
     throw new Error(error);
   }
