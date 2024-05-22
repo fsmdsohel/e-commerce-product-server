@@ -9,8 +9,8 @@ app.use(express.json());
 app.use(cors());
 
 // application routes
-app.use("api/products", ProductRoutes);
-app.use("/", async (req, res) => {
+app.use("/api/products", ProductRoutes);
+app.get("/", async (req, res) => {
   res.json({ message: "Hello World!" });
 });
 

@@ -9,6 +9,18 @@ const createStudentIntoDB = async (productData: TProduct) => {
   return result;
 };
 
+const getAllProductsFromDB = async () => {
+  const result = await Product.find();
+  return result;
+};
+
+const getProductByIdFromDB = async (id: string) => {
+  const result = await Product.findById(id);
+  return result;
+};
+
 export const ProductServices = {
   createStudentIntoDB,
+  getAllProductsFromDB,
+  getProductByIdFromDB,
 };
