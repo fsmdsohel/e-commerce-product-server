@@ -19,8 +19,19 @@ const getProductByIdFromDB = async (id: string) => {
   return result;
 };
 
+const updateProductByIdFromDB = async (
+  productId: string,
+  productData: TProduct
+) => {
+  const result = await Product.findByIdAndUpdate(productId, productData, {
+    new: true,
+  });
+  return result;
+};
+
 export const ProductServices = {
   createStudentIntoDB,
   getAllProductsFromDB,
   getProductByIdFromDB,
+  updateProductByIdFromDB,
 };
