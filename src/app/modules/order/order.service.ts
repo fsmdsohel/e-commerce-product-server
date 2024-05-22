@@ -20,7 +20,17 @@ const getAllOrdersFromDB = async () => {
   }
 };
 
+const getOrderByEmailFromDB = async (email: string) => {
+  try {
+    const result = await Order.find({ email: email });
+    return result;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
 export const OrderServices = {
   createNewOrderIntoDB,
   getAllOrdersFromDB,
+  getOrderByEmailFromDB,
 };
