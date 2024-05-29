@@ -4,7 +4,7 @@ import { TProductSchema } from "./product.validation";
 
 const createProduct = async (req: Request, res: Response) => {
   try {
-    const { product: productData } = req.body;
+    const productData = req.body;
     const { error, value } = TProductSchema.validate(productData);
 
     if (error) {
@@ -87,7 +87,7 @@ const getProductById = async (req: Request, res: Response) => {
 const updateProductById = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    const { product: productData } = req.body;
+    const productData = req.body;
 
     const result = await ProductServices.updateProductByIdFromDB(
       productId,
